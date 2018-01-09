@@ -85,6 +85,7 @@
 </template>
 
 <style lang="scss">
+
   @import '~client/assets/scss/colors.scss';
   @import '~client/assets/scss/modal.scss';
 
@@ -288,7 +289,7 @@
 
   const hideAmountSelectionForPurchaseTypes = [
     'gear', 'backgrounds', 'mystery_set', 'card',
-    'rebirth_orb', 'fortify', 'armoire', 'keys',
+    'rebirth_orb', 'fortify', 'armoire',
   ];
 
   export default {
@@ -372,14 +373,6 @@
         this.$emit('change', $event);
       },
       buyItem () {
-        // @TODO: I  think we should buying to the items. Turn the items into classes, and use polymorphism
-        if (this.item.buy) {
-          this.item.buy();
-          this.$emit('buyPressed', this.item);
-          this.hideDialog();
-          return;
-        }
-
         if (this.item.currency === 'gems' &&
           !confirm(this.$t('purchaseFor', { cost: this.item.value * this.selectedAmountToBuy }))) {
           return;
